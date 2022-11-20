@@ -1,11 +1,14 @@
 import datetime
-from flask import Flask, render_template
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/',methods = ['POST', 'GET'])
 def hello_world():
-    return(render_template('index.html', utc_dt = datetime.datetime.utcnow()))
+    if request.method == 'POST':
+        return "Post"
+    else:
+        return(jsonify(hello='World'))
 
 if __name__ == '__main__':
     app.run()
